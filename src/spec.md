@@ -61,6 +61,8 @@ iff
 
 if
     CALLER_ID =/= To
+
+returns 1
 ```
 
 ```act
@@ -86,4 +88,6 @@ iff
 if
 
     CALLER_ID == To
+
+returns 1
 ```
