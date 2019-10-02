@@ -91,3 +91,86 @@ if
 
 returns 1
 ```
+
+```act
+behaviour transferFrom-diff of Token
+interface transferFrom(address Src, address Dst, uint Value)
+
+types
+
+    SrcBal : uint256
+    DstBal : uint256
+    Allowance : uint256
+
+storage
+
+    #Token.balances[Src] |-> SrcBal => SrcBal - Value
+    #Token.balances[Dst] |-> DstBal => DstBal + Value
+    #Token.allowance[Src][CALLER_ID] |-> Allowance => Allowance - Value
+
+iff in range uint256
+
+    SrcBal - Value
+    DstBal + Value
+    Allowance - Value
+
+iff
+
+    VCallValue == 0
+
+if
+
+    Src =/= Dst
+
+returns 1
+```
+
+```act
+behaviour transferFrom-same of Token
+interface transferFrom(address Src, address Dst, uint Value)
+
+types
+
+    SrcBal : uint256
+    Allowance : uint256
+
+storage
+
+    #Token.balances[Src] |-> SrcBal => SrcBal
+    #Token.allowance[Src][CALLER_ID] |-> Allowance => Allowance - Value
+
+iff in range uint256
+
+    SrcBal - Value
+    Allowance - Value
+
+iff
+
+    VCallValue == 0
+
+if
+
+    Src == Dst
+
+returns 1
+```
+
+
+```act
+behaviour approve of Token
+interface approve(address Spender, uint Value)
+
+types
+
+    Allowance : uint256
+
+storage
+
+    #Token.allowance[CALLER_ID][Spender] |-> Allowance => Value
+
+iff
+
+    VCallValue == 0
+
+returns 1
+```

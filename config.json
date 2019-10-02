@@ -1,0 +1,18 @@
+{
+  "src": {
+    "specification": "src/spec.md",
+    "smt_prelude": "src/prelude.smt2.md",
+    "rules": [
+      "src/lemmas.k.md",
+      "src/storage.md"
+    ]
+  },
+  "implementations": {
+    "Token" : {
+      "bin_runtime": "./src/bin_runtime",
+      "abi": "./src/abi"
+    }
+  },
+  "dapp_root": "dapp"
+}
+
