@@ -106,7 +106,7 @@ storage
 
     #Token.balances[Src] |-> SrcBal => SrcBal - Value
     #Token.balances[Dst] |-> DstBal => DstBal + Value
-    #Token.allowance[Src][CALLER_ID] |-> Allowance => Allowance - Value
+    #Token.allowance[Src][CALLER_ID] |-> Allowance => #if Allowance == maxUInt256 #then Allowance #else Allowance - Value #fi
 
 iff in range uint256
 
@@ -137,7 +137,7 @@ types
 storage
 
     #Token.balances[Src] |-> SrcBal => SrcBal
-    #Token.allowance[Src][CALLER_ID] |-> Allowance => Allowance - Value
+    #Token.allowance[Src][CALLER_ID] |-> Allowance => #if Allowance == maxUInt256 #then Allowance #else Allowance - Value #fi
 
 iff in range uint256
 
