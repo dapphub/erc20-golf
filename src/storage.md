@@ -3,7 +3,7 @@ Storage locations for token
 syntax Int ::= "#Token.balances" "[" Int "]" [function]
 // -----------------------------------------------
 // doc: The token balance of `$0`
-rule #Token.balances[A] => #hashedLocation("Solidity", 0, A)
+rule #Token.balances[A] => #hashedLocation("Vyper", 0, A)
 ```
 
 ```k
@@ -17,5 +17,5 @@ rule #Token.supply => 1
 syntax Int ::= "#Token.allowance" "[" Int "][" Int "]" [function]
 // -----------------------------------------------
 // doc: The token balance of `$0`
-rule #Token.allowance[A][B] => #hashedLocation("Solidity", 2, A B)
+rule #Token.allowance[A][B] => #hashedLocation("Vyper", 2, A B)
 ```
