@@ -174,3 +174,20 @@ iff
 
 returns 1
 ```
+
+```act
+behaviour allowance of Token
+interface allowance(address src, address usr)
+
+for all
+  Allowance : uint256
+
+storage
+  allowance[src][usr] |-> Allowance
+
+iff
+
+  VCallValue == 0
+
+returns Allowance
+```
