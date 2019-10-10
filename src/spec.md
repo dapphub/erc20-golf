@@ -11,7 +11,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Balance
+### Balance
 ```act
 behaviour balanceOf of Token
 interface balanceOf(address Who)
@@ -30,7 +30,7 @@ iff
 
 returns Balance
 ```
-# Total Supply
+### Total Supply
 
 ```act
 behaviour totalSupply of Token
@@ -51,7 +51,7 @@ iff
 returns Supply
 ```
 
-# Allowance
+### Allowance
 
 ```act
 behaviour allowance of Token
@@ -72,7 +72,7 @@ iff
 returns Allowance
 ```
 
-# Transfer
+### Transfer
 ```act
 behaviour transfer-diff of Token
 interface transfer(address To, uint Value)
@@ -128,7 +128,7 @@ if
 
 returns 1
 ```
-# TransferFrom
+### TransferFrom
 
 ```act
 behaviour transferFrom-diff of Token
@@ -193,7 +193,7 @@ if
 returns 1
 ```
 
-# Approve
+### Approve
 
 ```act
 behaviour approve of Token
