@@ -2,7 +2,7 @@
 behaviour balanceOf of Token
 interface balanceOf(address who)
 
-types
+for all
 
     Balance : uint256
 
@@ -21,7 +21,7 @@ returns Balance
 behaviour totalSupply of Token
 interface totalSupply()
 
-types
+for all
 
     Supply : uint256
 
@@ -40,7 +40,7 @@ returns Supply
 behaviour transfer-diff of Token
 interface transfer(address To, uint Value)
 
-types
+for all
 
     FromBal : uint256
     ToBal   : uint256
@@ -69,7 +69,7 @@ returns 1
 behaviour transfer-same of Token
 interface transfer(address To, uint Value)
 
-types
+for all
 
     FromBal : uint256
 
@@ -96,7 +96,7 @@ returns 1
 behaviour transferFrom-diff of Token
 interface transferFrom(address Src, address Dst, uint Value)
 
-types
+for all
 
     SrcBal : uint256
     DstBal : uint256
@@ -129,7 +129,7 @@ returns 1
 behaviour transferFrom-same of Token
 interface transferFrom(address Src, address Dst, uint Value)
 
-types
+for all
 
     SrcBal : uint256
     Allowance : uint256
@@ -160,7 +160,7 @@ returns 1
 behaviour approve of Token
 interface approve(address Spender, uint Value)
 
-types
+for all
 
     Allowance : uint256
 
@@ -180,9 +180,11 @@ behaviour allowance of Token
 interface allowance(address src, address usr)
 
 for all
+
   Allowance : uint256
 
 storage
+
   allowance[src][usr] |-> Allowance
 
 iff
