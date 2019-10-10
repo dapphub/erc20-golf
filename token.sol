@@ -21,33 +21,37 @@ contract Token {
   uint public totalSupply;
   mapping (address => mapping (address => uint256)) public allowance;
 
+  constructor(uint supply) public {
+    totalSupply = supply;
+    balanceOf[msg.sender] = supply;
+  }
+
   function add(uint256 x, uint256 y) internal pure returns (uint z) {
     z = x + y;
     require(z >= x);
   }
   function sub(uint256 x, uint256 y) internal pure returns (uint z) {
     z = x - y;
+    require(z <= x);
   }
-  constructor(uint supply) public {
-    totalSupply = supply;
-    balanceOf[msg.sender] = supply;
-  }
-  function transfer(address receiver, uint256 value) public returns (bool) {
-    require (balanceOf[msg.sender]>= value);
-    balanceOf[msg.sender] = balanceOf[msg.sender] - value;
-    balanceOf[receiver]   = add(balanceOf[receiver], value);
+
+  function transfer(address dst, uint256 value) public returns (bool) {
+    balanceOf[msg.sender] = sub(balanceOf[msg.sender], value);
+    balanceOf[dst]        = add(balanceOf[dst], value);
     return true;
   }
-  function approve(address guy, uint wad) public returns (bool) {
-    allowance[msg.sender][guy] = wad;    
-    return true;
-  }
-  function transferFrom(address src, address dst, uint wad) public returns (bool) {
+
+  function transferFrom(address src, address dst, uint value) public returns (bool) {
     if (!(allowance[src][msg.sender] == uint(-1))) {
-      allowance[src][msg.sender] = sub(allowance[src][msg.sender], wad);
+      allowance[src][msg.sender] = sub(allowance[src][msg.sender], value);
     }
-    balanceOf[src] = sub(balanceOf[src], wad);
-    balanceOf[dst] = add(balanceOf[dst], wad);
+    balanceOf[src] = sub(balanceOf[src], value);
+    balanceOf[dst] = add(balanceOf[dst], value);
+    return true;
+  }
+
+  function approve(address guy, uint value) public returns (bool) {
+    allowance[msg.sender][guy] = value;
     return true;
   }
 }
