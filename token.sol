@@ -32,7 +32,7 @@ contract Token {
   }
   function sub(uint256 x, uint256 y) internal pure returns (uint z) {
     z = x - y;
-    require(z <= x);
+    require(y <= x);
   }
 
   function transfer(address dst, uint256 value) public returns (bool) {
