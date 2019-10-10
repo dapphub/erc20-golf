@@ -1,6 +1,20 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Balance](#balance)
+- [Total Supply](#total-supply)
+- [Allowance](#allowance)
+- [Transfer](#transfer)
+- [TransferFrom](#transferfrom)
+- [Approve](#approve)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Balance
 ```act
 behaviour balanceOf of Token
-interface balanceOf(address who)
+interface balanceOf(address Who)
 
 for all
 
@@ -8,7 +22,7 @@ for all
 
 storage
 
-    #Token.balances[who] |-> Balance
+    #Token.balances[Who] |-> Balance
 
 iff
 
@@ -16,6 +30,7 @@ iff
 
 returns Balance
 ```
+# Total Supply
 
 ```act
 behaviour totalSupply of Token
@@ -36,6 +51,28 @@ iff
 returns Supply
 ```
 
+# Allowance
+
+```act
+behaviour allowance of Token
+interface allowance(address src, address usr)
+
+for all
+
+  Allowance : uint256
+
+storage
+
+  allowance[src][usr] |-> Allowance
+
+iff
+
+  VCallValue == 0
+
+returns Allowance
+```
+
+# Transfer
 ```act
 behaviour transfer-diff of Token
 interface transfer(address To, uint Value)
@@ -91,6 +128,7 @@ if
 
 returns 1
 ```
+# TransferFrom
 
 ```act
 behaviour transferFrom-diff of Token
@@ -155,6 +193,7 @@ if
 returns 1
 ```
 
+# Approve
 
 ```act
 behaviour approve of Token
@@ -173,23 +212,4 @@ iff
     VCallValue == 0
 
 returns 1
-```
-
-```act
-behaviour allowance of Token
-interface allowance(address src, address usr)
-
-for all
-
-  Allowance : uint256
-
-storage
-
-  allowance[src][usr] |-> Allowance
-
-iff
-
-  VCallValue == 0
-
-returns Allowance
 ```
